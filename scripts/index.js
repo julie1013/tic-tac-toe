@@ -12,7 +12,22 @@ const drawBoard = function(array){
   }
 };
 
+const isValidMove = function(array){
+  for(let i = 0; i < array.length; i++){
+    return array[i] === null;
+  }
+}
+
+const move = function(array){
+    if(isValidMove(board)){
+      alert("hi");
+  }
+};
+
 $(document).ready(function() {
   initializeBoard();
   drawBoard(board);
+  $(".square").on("click", function(event){
+    move(board);
+  });
 });
