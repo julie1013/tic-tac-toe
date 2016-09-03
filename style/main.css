@@ -1,0 +1,19 @@
+.board {
+  height: 300px;
+  width: 300px;
+  border: 1px solid black;
+  margin: 0 auto;
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+.square {
+  width: 99px;
+  height: 99px;
+  border: 1px solid black;
+  float: left;
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+}
