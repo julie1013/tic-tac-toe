@@ -57,6 +57,19 @@ const sameThree = function(firstCell, adjacentCellOne, adjacentCellTwo){
   (board[firstCell] === 'o' && board[adjacentCellOne] === 'o' && board[adjacentCellTwo] === 'o');
 };
 
+const winCheck = function(firstCell, adjacentCellOne, adjacentCellTwo){
+  if (sameThree(firstCell, adjacentCellOne, adjacentCellTwo)){
+    if(horizontalAdjacent(firstCell, adjacentCellOne, adjacentCellTwo) ||
+      verticalAdjacent(firstCell, adjacentCellOne, adjacentCellTwo) ||
+      diagonalAdjacent(firstCell, adjacentCellOne, adjacentCellTwo)){
+        return true;
+      } else {
+        return false;
+      }
+  }
+  return false;
+};
+
 // const drawBoard = function(array){
 //   for(let i = 0; i < array.length; i++){
 //     $('.board').append('<div class = square' + ' data-cell = ' + i +'></div>');
