@@ -16,7 +16,12 @@ const isVacantCell = function(cell){
 const play = function(player, cell){
   if (isVacantCell(cell)){
     board[cell] = player;
+    setCell(cell, player);
   };
+};
+
+const setCell = function(cell, player){
+  $(".data-cell").html(player);
 };
 
 const horizontalAdjacent = function(firstCell, adjacentCellOne, adjacentCellTwo){
@@ -70,54 +75,17 @@ const winCheck = function(firstCell, adjacentCellOne, adjacentCellTwo){
   return false;
 };
 
-// const drawBoard = function(array){
-//   for(let i = 0; i < array.length; i++){
-//     $('.board').append('<div class = square' + ' data-cell = ' + i +'></div>');
-//   }
-// };
-//
-//
 
-// const isWin = function(array){
-//   for (let i = 0; i < array.length; i++){
-//     if
-//   }
-// };
+const drawBoard = function(array){
+  for(let i = 0; i < array.length; i++){
+    $('.board').append('<div class = square' + ' data-cell = ' + i +'></div>');
+  }
+};
 
-
-// const horizontalWin = function(array, space, player){
-//   if
-// };
-
-// const verticalWin = function(array){
-//   for(let i = 0; i < array.length; i++){
-//     if(!areBothSpacesOccupied(Math.abs(i)))
-//   }
-// };
-
-// const isSameToken = function(player, token){
-//   return player === token;
-// };
-
-// const areBothSpacesOccupied = function(a, b){
-//   return a !== null && b !==null
-// };
-
-// const setCell(cell, player){
-//   if
-// }
-
-// const move = function(array, player){
-//     for(let i = 0; i < array.length; i++){
-//       if (array[i] === null){
-//         array[i] = player;
-//       }
-//     }
-// };
 
 $(document).ready(function() {
   initializeBoard();
-  // drawBoard(board);
+  drawBoard(board);
   // $(".square").on("click", function(event){
   //   move(board);
   // });
