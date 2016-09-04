@@ -52,6 +52,11 @@ const diagonalAdjacent = function(firstCell, adjacentCellOne, adjacentCellTwo){
   return false;
 };
 
+const sameThree = function(firstCell, adjacentCellOne, adjacentCellTwo){
+  return (board[firstCell] === 'x' && board[adjacentCellOne] === 'x' && board[adjacentCellTwo] === 'x') ||
+  (board[firstCell] === 'o' && board[adjacentCellOne] === 'o' && board[adjacentCellTwo] === 'o');
+};
+
 // const drawBoard = function(array){
 //   for(let i = 0; i < array.length; i++){
 //     $('.board').append('<div class = square' + ' data-cell = ' + i +'></div>');
