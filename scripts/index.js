@@ -28,7 +28,7 @@ const isO = function(player){
 //is player o
 
 const isPlayerTurn = function(){
-  return isX(player) && whoseTurn === 0 || return isO(player) && whoseTurn === 1;
+  return isX(player) && whoseTurn === 0 || isO(player) && whoseTurn === 1;
 };
 //returns whose turn it is
 
@@ -56,7 +56,7 @@ const play = function(player, cell){
 //player is able to play their token in a cell
 
 const setCell = function(cell, player){
-  $(cell).append(player);
+  $('#' + cell).html('<img src = ./images/'+ player +'.png style="width: 90px">');
 };
 //visually updates cell with player token
 
