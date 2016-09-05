@@ -66,8 +66,7 @@ const play = function(cell){
 //player is able to play their token in a cell
 
 const setCell = function(cell, player){
-  $('#' + cell).html('<img src = ./images/'+ player +'.png style="width: 90px">');
-  $(this).removeClass('unoccupied').addClass('occupied');
+  $('#' + cell).html('<img src = ./images/'+ player +'.png style="width: 90px">').removeClass('unoccupied').removeClass('selected').addClass('occupied');
 };
 //visually updates cell with player token
 
