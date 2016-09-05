@@ -12,7 +12,7 @@ const initializeBoard = function(){
 
 const drawBoard = function(array){
   for(let i = 0; i < array.length; i++){
-    $('.board').append('<div class id =' + i +'></div>');
+    $('.board').append('<div id =' + i +'></div>');
     $('.board div').addClass('square').addClass('unoccupied');
   }
 };
