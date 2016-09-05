@@ -12,7 +12,8 @@ const initializeBoard = function(){
 
 const drawBoard = function(array){
   for(let i = 0; i < array.length; i++){
-    $('.board').append('<div class = square id =' + i +'></div>');
+    $('.board').append('<div class id =' + i +'></div>');
+    $('.board div').addClass('square').addClass('unoccupied');
   }
 };
 //sets up the board visually
@@ -46,6 +47,10 @@ const isVacantCell = function(cell){
 };
 //checks if cell is vacant
 
+const selectSquare = function(element){
+  $(element).addClass('selected');
+  $(element).siblings().removeClass('selected');
+}
 
 const play = function(player, cell){
   if (isVacantCell(cell)){
@@ -119,8 +124,15 @@ const winCheck = function(firstCell, adjacentCellOne, adjacentCellTwo){
 $(document).ready(function() {
   initializeBoard();
   drawBoard(board);
-  // $(".square").on("click", function(event){
-  //   move(board);
-  // });
+  $('.board div').on('click', function(event){
+    selectSquare(this);
+    let playedCell = $(this);
+    if (whoseTurn === 0){
+      player = 'x';
+    } else {
+      player = 'o';
+    }
+    play(player, playedCell);
+  });
   console.log(board);
 });
