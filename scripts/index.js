@@ -61,11 +61,13 @@ const selectSquare = function(element){
 const play = function(cell){
     player = isPlayerTurn();
     setCell(cell, player);
+    turnSwitch();
 };
 //player is able to play their token in a cell
 
 const setCell = function(cell, player){
   $('#' + cell).html('<img src = ./images/'+ player +'.png style="width: 90px">');
+  $(this).removeClass('unoccupied').addClass('occupied');
 };
 //visually updates cell with player token
 
