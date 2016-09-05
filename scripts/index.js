@@ -8,6 +8,14 @@ const initializeBoard = function(){
   }
 };
 
+const drawBoard = function(array){
+  for(let i = 0; i < array.length; i++){
+    $('.board').append('<div class = square id =' + i +'></div>');
+  }
+};
+
+
+
 const isVacantCell = function(cell){
   return board[cell] === null;
 };
@@ -21,7 +29,7 @@ const play = function(player, cell){
 };
 
 const setCell = function(cell, player){
-  $(".data-cell").html(player);
+  $(cell).append(player);
 };
 
 const horizontalAdjacent = function(firstCell, adjacentCellOne, adjacentCellTwo){
@@ -73,13 +81,6 @@ const winCheck = function(firstCell, adjacentCellOne, adjacentCellTwo){
       }
   }
   return false;
-};
-
-
-const drawBoard = function(array){
-  for(let i = 0; i < array.length; i++){
-    $('.board').append('<div class = square' + ' data-cell = ' + i +'></div>');
-  }
 };
 
 
