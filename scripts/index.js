@@ -12,7 +12,7 @@ const initializeBoard = function(){
 
 const drawBoard = function(array){
   for(let i = 0; i < array.length; i++){
-    $('.board').append('<div id =' + i +'></div>');
+    $('.board').append('<div id =' + i + '></div>');
     $('.board div').addClass('square').addClass('unoccupied');
   }
 };
@@ -53,10 +53,8 @@ const selectSquare = function(element){
 }
 
 const play = function(player, cell){
-  if (isVacantCell(cell)){
     board[cell] = player;
     setCell(cell, player);
-  };
 };
 //player is able to play their token in a cell
 
@@ -125,14 +123,11 @@ $(document).ready(function() {
   initializeBoard();
   drawBoard(board);
   $('.board div').on('click', function(event){
-    selectSquare(this);
-    let playedCell = $(this);
-    if (whoseTurn === 0){
-      player = 'x';
-    } else {
-      player = 'o';
-    }
-    play(player, playedCell);
+    selectSquare($(this));
+    let targetCell = $(this).attr('id');
+    if (isVacantCell(targetCell)){
+    play(player, targetCell);
+  }
   });
   console.log(board);
 });
