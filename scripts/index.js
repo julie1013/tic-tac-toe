@@ -1,7 +1,5 @@
 let board = [];
 let whoseTurn = 0;
-// let x = $('.x');
-// let o = $('.o');
 
 const initializeBoard = function(){
   for (let i = 0; i < 9; i++){
@@ -18,18 +16,25 @@ const drawBoard = function(array){
 };
 //sets up the board visually
 
-const isX = function(player){
-  return player === 'x';
+const isX = function(){
+  let player = 'x';
+  return player;
 };
 //is player x
 
-const isO = function(player){
-  return player === 'o';
+const isO = function(){
+  let player = 'o';
+  return player;
 };
 //is player o
 
-const isPlayerTurn = function(){
-  return isX(player) && whoseTurn === 0 || isO(player) && whoseTurn === 1;
+const isPlayerTurn = function(player){
+  if (whoseTurn === 0){
+    player = 'x';
+  } else {
+    player = 'o';
+  }
+  return player;
 };
 //returns whose turn it is
 
@@ -50,10 +55,11 @@ const isVacantCell = function(cell){
 const selectSquare = function(element){
   $(element).addClass('selected');
   $(element).siblings().removeClass('selected');
-}
+};
+//adds selected class to square that is clicked
 
-const play = function(player, cell){
-    board[cell] = player;
+const play = function(cell){
+    player = isPlayerTurn();
     setCell(cell, player);
 };
 //player is able to play their token in a cell
@@ -122,11 +128,13 @@ const winCheck = function(firstCell, adjacentCellOne, adjacentCellTwo){
 $(document).ready(function() {
   initializeBoard();
   drawBoard(board);
+  isPlayerTurn();
   $('.board div').on('click', function(event){
     selectSquare($(this));
     let targetCell = $(this).attr('id');
+    targetCell = parseFloat(targetCell);
     if (isVacantCell(targetCell)){
-    play(player, targetCell);
+    play(targetCell);
   }
   });
   console.log(board);
