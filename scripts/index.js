@@ -41,12 +41,6 @@ const isVacantCell = function(cell){
 };
 //checks if cell is vacant
 
-const selectSquare = function(element){
-  $(element).addClass('selected');
-  $(element).siblings().removeClass('selected');
-};
-//adds selected class to square that is clicked
-
 const play = function(cell){
     player = isPlayerTurn();
     setCell(cell, player);
@@ -58,7 +52,8 @@ const play = function(cell){
       turnSwitch();
     }
 };
-//player is able to play their token in a cell
+//player is able to play their token in a cell. If there's a winner or a tie,
+//the game restarts.
 
 const setCell = function(cell, player){
   $('#' + cell).html('<img src = ./images/'+ player +'.png style="width: 90px">').removeClass('unoccupied').removeClass('selected').addClass('occupied').off();
@@ -103,9 +98,7 @@ const diagonalWin = function(){
 //checks for diagonal setup for possible win
 
 const winCheck = function(){
-  // if(xCount >= 3 || oCount >= 3){
-    return horizontalWin() || verticalWin() || diagonalWin();
-  // }
+  return horizontalWin() || verticalWin() || diagonalWin();
 };
 //checks if a player has won
 
@@ -115,7 +108,6 @@ const tieCheck = function(){
 
 const setUpHandlers = function(){
   $('.board div').on('click', function(event){
-    selectSquare($(this));
     let targetCell = $(this).attr('id');
     targetCell = parseFloat(targetCell);
     if (isVacantCell(targetCell)){
