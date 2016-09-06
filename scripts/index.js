@@ -65,8 +65,10 @@ const play = function(cell){
     player = isPlayerTurn();
     setCell(cell, player);
     turnCount();
-    if(winCheck()){
-      alert('You win!');
+    if(winCheck() || tieCheck()){
+      $('.board').children().off();
+      setTimeout(function(){
+        restartGame()}, 3000);
     } else {
       turnSwitch();
     }
@@ -122,17 +124,18 @@ const diagonalWin = function(){
 };
 //checks for diagonal setup for possible win
 
-const winCheck = function(firstCell, adjacentCellOne, adjacentCellTwo){
+const winCheck = function(){
   if(xCount >= 3 || oCount >= 3){
     return horizontalWin() || verticalWin() || diagonalWin();
   }
 };
 //checks if a player has won
 
-$(document).ready(function() {
-  initializeBoard();
-  drawBoard(board);
-  isPlayerTurn();
+const tieCheck = function(){
+  return ($('.occupied').length === 9);
+};
+
+const setUpHandlers = function(){
   $('.board div').on('click', function(event){
     selectSquare($(this));
     let targetCell = $(this).attr('id');
@@ -141,5 +144,26 @@ $(document).ready(function() {
     play(targetCell);
   }
   });
-  console.log(board);
+};
+//sets up event handlers on cells
+
+const restartGame = function(){
+  board = [];
+  $('.board').empty();
+  initializeBoard();
+  drawBoard(board);
+  setUpHandlers();
+  whoseTurn = 0;
+  xCount = 0;
+  oCount = 0;
+  winner = null;
+};
+
+
+$(document).ready(function() {
+  initializeBoard();
+  drawBoard(board);
+  setUpHandlers();
 });
+
+//after 5 on second round of game, win function returns true. why?
