@@ -124,11 +124,7 @@ const diagonalWin = function(){
 
 const winCheck = function(firstCell, adjacentCellOne, adjacentCellTwo){
   if(xCount >= 3 || oCount >= 3){
-    if (horizontalWin() || verticalWin() || diagonalWin()){
-      return true;
-    } else {
-      return false;
-    }
+    return horizontalWin() || verticalWin() || diagonalWin();
   }
 };
 //checks if a player has won
