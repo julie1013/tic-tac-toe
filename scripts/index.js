@@ -1,7 +1,5 @@
 let board = [];
 let whoseTurn = 0;
-let xCount = 0;
-let oCount = 0;
 let winner;
 
 const initializeBoard = function(){
@@ -18,18 +16,6 @@ const drawBoard = function(array){
   }
 };
 //sets up the board visually
-
-const isX = function(){
-  let player = 'x';
-  return player;
-};
-//is player x
-
-const isO = function(){
-  let player = 'o';
-  return player;
-};
-//is player o
 
 const isPlayerTurn = function(){
   if (whoseTurn === 0){
@@ -64,7 +50,6 @@ const selectSquare = function(element){
 const play = function(cell){
     player = isPlayerTurn();
     setCell(cell, player);
-    turnCount();
     if(winCheck() || tieCheck()){
       $('.board').children().off();
       setTimeout(function(){
@@ -81,13 +66,6 @@ const setCell = function(cell, player){
 };
 //visually updates cell with player token
 
-const turnCount = function(){
-  if(whoseTurn === 0){
-    xCount++;
-  } else {
-    oCount++;
-  }
-};
 
 const horizontalWin = function(){
     if(board[0] !== null && board[0] === board[1] && board[0] === board[2]){
@@ -125,9 +103,9 @@ const diagonalWin = function(){
 //checks for diagonal setup for possible win
 
 const winCheck = function(){
-  if(xCount >= 3 || oCount >= 3){
+  // if(xCount >= 3 || oCount >= 3){
     return horizontalWin() || verticalWin() || diagonalWin();
-  }
+  // }
 };
 //checks if a player has won
 
